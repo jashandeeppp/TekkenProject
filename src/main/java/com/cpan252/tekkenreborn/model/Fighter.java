@@ -1,6 +1,7 @@
 package com.cpan252.tekkenreborn.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -9,7 +10,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data   
 @Builder
@@ -19,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class Fighter {
 
     // Here we added annotations like @NotBlank, @Max, @Min, @DecimalMin, @DecimalMax because we want to do validation so that user enters the correct value only.
+    private Long id; // it is imported for the database.
     @NotBlank
     private String name;
     @Max(100)
@@ -32,6 +33,8 @@ public class Fighter {
     * As we want fighters from different animes so we have defined enum so that we can choose characters from multiple animes.
      */ 
     private Anime animeFrom;
+
+    private final Date createdAt = new Date();
 
     public enum Anime{   //defined enum
         NARUTO("Naruto"), BLEACH("Bleach"), ONE_PIECE("One Piece"), TEKKEN("Tekken");    // Defined different animes

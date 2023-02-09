@@ -11,14 +11,14 @@ import lombok.NoArgsConstructor;
  */
 @Data
 public class FighterPool {
-    private List<Fighter> fighters;
+    // private List<Fighter> fighters;
 
-    public FighterPool(){
-        this.fighters = new ArrayList<>();  
-    }
+    // public FighterPool(){
+    //     this.fighters = new ArrayList<>();  
+    // }
 
-    public void add(Fighter fighter){
-         this.fighters.add(fighter);
-    }
+    // public void add(Fighter fighter){
+    //      this.fighters.add(fighter);
+    // }
     
 }
