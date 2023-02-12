@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cpan252.tekkenreborn.model.Fighter;
 // import com.cpan252.tekkenreborn.model.FighterPool;
 import com.cpan252.tekkenreborn.model.Fighter.Anime;
-import com.cpan252.tekkenreborn.repository.impl.JdbcFighterRepository;
+import com.cpan252.tekkenreborn.repository.FighterRepository;
+// import com.cpan252.tekkenreborn.repository.impl.JdbcFighterRepository;
 
 import jakarta.validation.Valid;
 // import lombok.var;
@@ -32,9 +33,20 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/design")
 public class DesignController {
 
-    @Autowired // this annotation injects JdbcFighterRespository (bean) to the other bean.
-    private JdbcFighterRepository fighterRepository;
 
+    //*** In java we should use the interface instead of the concrete class.
+    //*** It helps us to switch implementations without having to change the code.
+
+     /*
+     *  In java we should use the interface instead of the concrete class because 
+     * if we want to switch the way we work with fighterRepsoitory so we could use fighterRepository(interface) 
+     * in the previous case as well because there is only one implementation
+     *  which was JDBCFighterRepository and spring would have guessed it correctly and injected correct bean.
+     * So, the problem is happening when we have many implemnentation
+     */
+    @Autowired // this annotation injects JdbcFighterRespository (bean) to the other bean.
+    // private JdbcFighterRepository fighterRepository;
+    private FighterRepository fighterRepository;
     /*
      * We used get mapping annotation to map the design method to get request.
      * When we have getMapping it directs us to design method which returns String which points to the template.
@@ -123,7 +135,7 @@ public class DesignController {
         log.info("Processing fighter: {}",fighter);
         fighterRepository.save(fighter);
         log.info("Saved figher with id: {}");
-        return "redirect:/design";
+        return "redirect:/fighterlist";
     }
 
 }
