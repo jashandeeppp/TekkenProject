@@ -82,7 +82,7 @@ public class DesignController {
          * then we use the list of string into the modal to just providing this value to the form and we can display to the form or any html page
          * Which means here(below) we are connecting Java with HTML.
          */
-        model.addAttribute("animes", animes);
+        model.addAttribute("animes", animes);   // this animes we used to itterate the name of the animes.
         log.info("animes converted to string :{}", animes);
     }
 
