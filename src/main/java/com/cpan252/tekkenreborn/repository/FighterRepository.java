@@ -42,8 +42,7 @@ import com.cpan252.tekkenreborn.model.Fighter.Anime;
    * For ex. We have 30 fighters
    */
 public interface FighterRepository extends CrudRepository<Fighter,Long> {
-    List<Fighter> findByAnimeFrom(Anime anime);
-
+    List<Fighter> findByAnimeFrom(Anime anime); 
     // We start with findBy to indicate that we are searching by some conditions, then we must provide name prefix and two dates: from and to
     List<Fighter> findByNameStartsWithAndCreatedAtBetween(String name, LocalDate startDate, LocalDate endDate);
 }
