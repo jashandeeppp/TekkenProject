@@ -31,7 +31,7 @@ public class RegistrationController {
     // Provided mapping for the view
     @GetMapping
     public String showRegistrationForm(){
-        return "register";
+        return "authentication/register";
     }
 
 
@@ -39,6 +39,6 @@ public class RegistrationController {
     @PostMapping
     public String registerUserAccount(RegistrationForm form) {
         userRepository.save(form.toUser(passwordEncoder));
-        return "redirect:/login";
+        return "redirect:/";
     }
 }

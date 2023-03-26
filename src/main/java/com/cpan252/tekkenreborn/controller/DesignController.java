@@ -1,10 +1,11 @@
 package com.cpan252.tekkenreborn.controller;
 
 import java.util.EnumSet;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui. Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.cpan252.tekkenreborn.model.Fighter;
+import com.cpan252.tekkenreborn.model.User;
 // import com.cpan252.tekkenreborn.model.FighterPool;
 import com.cpan252.tekkenreborn.model.Fighter.Anime;
 import com.cpan252.tekkenreborn.repository.FighterRepository;
@@ -137,5 +139,14 @@ public class DesignController {
         log.info("Saved figher with id: {}");
         return "redirect:/fighterlist";
     }
+
+    @PostMapping("/deleteAllFighters")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")   // Pre authorize protection which is used to authorize that only admin can delete all fighters.
+    public String processFightersDeletion(@AuthenticationPrincipal User user){ 
+        log.info("Delete all fighers for user: {}", user.getAuthorities());
+        fighterRepository.deleteAll();
+        return "redirect:/design";
+    }
+    
 
 }

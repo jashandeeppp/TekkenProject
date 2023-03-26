@@ -33,11 +33,14 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;        // primary key automatically generated.
 
+
     private String username;
     private String password;
 
     @Override       
     public Collection<? extends GrantedAuthority> getAuthorities() {        // getAuthorities() user can have many authorities.
+        if (username.equals("admin"))
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"), new SimpleGrantedAuthority("ROLE_ADMIN"));
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         
     }
@@ -72,5 +75,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
     
 }

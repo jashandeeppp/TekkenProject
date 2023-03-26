@@ -9,6 +9,6 @@ public class WebConfig implements WebMvcConfigurer{
     // This is for creating custom login page.
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/login");
+        registry.addViewController("/").setViewName("authentication/login");    // added controller for pages.
     }
 }
