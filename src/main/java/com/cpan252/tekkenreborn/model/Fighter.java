@@ -3,6 +3,9 @@ package com.cpan252.tekkenreborn.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.cpan252.tekkenreborn.model.dto.CreateFighter;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 // import org.springframework.data.annotation.Id; this annotation we used with jdbc
 
 // import jakarta.annotation.Generated;
@@ -80,6 +83,7 @@ public class Fighter {
     public enum Anime{   //defined enum
         NARUTO("Naruto"), BLEACH("Bleach"), ONE_PIECE("One Piece"), TEKKEN("Tekken");    // Defined different animes
 
+        @JsonValue
         private String title;
 
         // its like a constructor
@@ -92,6 +96,5 @@ public class Fighter {
             return title;
         }
     }
-
     
 }

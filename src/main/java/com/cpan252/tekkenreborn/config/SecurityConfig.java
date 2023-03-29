@@ -61,7 +61,8 @@ public class SecurityConfig {
          * We also secured our design and fighterlist and can only see by the people who has the role user
          * And we are making sure that the login page is on /login.
          */
-        return http
+        // return http
+        http
             //We are authorizing HTTP Request. So for the design page and fighterlist page we are allowing anyone with role user to see the page.
             .authorizeHttpRequests()
             .requestMatchers(toH2Console()).permitAll()
@@ -83,18 +84,21 @@ public class SecurityConfig {
 
             // Make H2-Console non-secured; for debug purposes.
             // And we have to ignore some of the request matchers specifically h2-console, so we don't need to login to h2 which is for the dev purposes. 
-            .and()
-            .csrf() // its one of the web security concepts. It stands for Crosss Site Request Forgery is an attack that forces authenticated users to submit a request to a Web application against which they are currently authenticated. So basically it offers protection
-            .ignoringRequestMatchers(toH2Console()) // we are igonring csrf protection for H2 console.
+            // .and()
+            // .csrf() // its one of the web security concepts. It stands for Crosss Site Request Forgery is an attack that forces authenticated users to submit a request to a Web application against which they are currently authenticated. So basically it offers protection
+            // .ignoringRequestMatchers(toH2Console()) // we are igonring csrf protection for H2 console.
 
 
             // Allow pages to be loaded in frames from the same origin: needed for H2-console.
             .and()
             .headers()
-            .frameOptions()
-            .sameOrigin()
+            .frameOptions();
+            // .sameOrigin()
 
-            .and()
-            .build();
+
+            // .and()
+            // .build();
+            http.csrf().disable();
+            return http.build();
     }
 }
