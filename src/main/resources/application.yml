@@ -2,6 +2,9 @@ spring:
     datasource:
         url: jdbc:h2:mem:tekkenreborn
         generated-unique-name: false
+    data:
+        rest:
+            base-path: /api
 
 
 # added database into our application
